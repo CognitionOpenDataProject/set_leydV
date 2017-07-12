@@ -8,7 +8,6 @@ output:
 
 #### Article ID: leydV
 #### Pilot: Gustav Nilsonne
-#### Co-pilot: Tom Hardwicke  
 #### Start date: 13/06/17
 #### End date: 14/06/17
 
@@ -51,7 +50,7 @@ library(CODreports) # custom report functions
 Data were supplied as a Microsoft Word files containing tables. I have copied the columns containing the outcome variable into a comma-separated file.
 
 ```{r}
-data <- read.csv("~/GitHub/set_leydV/data/data.csv")
+data <- read.csv("data/data.csv")
 ```
 
 ## Step 4: Run analysis
