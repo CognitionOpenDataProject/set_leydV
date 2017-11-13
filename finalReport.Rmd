@@ -8,9 +8,11 @@ output:
 
 #### Article ID: leydV
 #### Pilot: Gustav Nilsonne
-#### Start date: 13/06/17
-#### End date: 14/06/17
+#### Start date: June 13 2017
+#### End date: Jun 14 2017
 #### Co-Pilot: Mike Frank
+#### Final verification: Tom Hardwicke
+#### Date: Nov 11 2017
 
 -------
 
@@ -30,6 +32,9 @@ This paper investigated whether a single exposure to an unlikely false solution 
 
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE)
+
+# prepare an empty report object, we will update this each time we run compareValues2()
+reportObject <- data.frame("Article_ID" = NA, "valuesChecked" = 0, "eyeballs" = 0, "Total_df" = 0, "Total_p" = 0, "Total_mean" = 0, "Total_sd" = 0, "Total_se" = 0, "Total_ci" = 0, "Total_bf" = 0, "Total_t" = 0, "Total_F" = 0, "Total_es" = 0, "Total_median" = 0, "Total_irr" = 0, "Total_r" = 0, "Total_z" = 0, "Total_coeff" = 0, "Total_n" = 0, "Total_x2" = 0, "Total_other" = 0, "Insufficient_Information_Errors" = 0, "Decision_Errors" = 0, "Major_Numerical_Errors" = 0, "Minor_Numerical_Errors" = 0, "Major_df" = 0, "Major_p" = 0, "Major_mean" = 0, "Major_sd" = 0, "Major_se" = 0, "Major_ci" = 0, "Major_bf" = 0, "Major_t" = 0, "Major_F" = 0, "Major_es" = 0, "Major_median" = 0, "Major_irr" = 0, "Major_r" = 0, "Major_z" = 0, "Major_coeff" = 0, "Major_n" = 0, "Major_x2" = 0, "Major_other" = 0, "affectsConclusion" = NA, "error_typo" = 0, "error_specification" = 0, "error_analysis" = 0, "error_data" = 0, "error_unidentified" = 0, "Author_Assistance" = NA, "resolved_typo" = 0, "resolved_specification" = 0, "resolved_analysis" = 0, "resolved_data" = 0, "correctionSuggested" = NA, "correctionPublished" = NA)
 ```
 
 ## Step 1: Load packages
@@ -54,6 +59,7 @@ data <- read.csv("data/data.csv")
 ## Step 4: Run analysis
 
 ### Descriptive statistics
+
 > Results from the first question of the original trick, without providing a false solution, show that 83% (25/30) of the participants found the correct solution
 
 ```{r}
@@ -61,9 +67,9 @@ correct <- sum(data$firstquestion_original)
 total <- length(data$firstquestion_original)
 percentage <- 100 * correct/total
 
-compareValues(83, percentage)
-compareValues(25, correct)
-compareValues(30, total)
+reportObject <- compareValues2("83", percentage, valueType = 'n')
+reportObject <- compareValues2("25", correct, valueType = 'n')
+reportObject <- compareValues2("30", total, valueType = 'n')
 ```
 
 > We next examined participants who did not initially solve the problem but then received the conditional or extinction test questions. Their results are shown in Fig. 3b (see also Appendix A).
@@ -88,9 +94,45 @@ kable(table_out, format = "markdown")
 
 ```
 
-![Appendix A.](AppendixA.png)
+![Appendix A.](images/AppendixA.pnG)
 
-The table contains 36 numerical results. All of them MATCH, as determined by inspection. Three of them were already reported in the text and compared above. 
+The table contains 36 numerical results. Three of them were already reported in the text and compared above. Let's explictly check the others.
+
+```{r}
+reportObject <- compareValues2(reportedValue = "5", obtainedValue = 5, valueType = "n")
+reportObject <- compareValues2(reportedValue = "30", obtainedValue = 30, valueType = "n")
+reportObject <- compareValues2(reportedValue = "17", obtainedValue = 17, valueType = "n")
+reportObject <- compareValues2(reportedValue = "5", obtainedValue = 5, valueType = "n")
+reportObject <- compareValues2(reportedValue = "30", obtainedValue = 30, valueType = "n")
+reportObject <- compareValues2(reportedValue = "17", obtainedValue = 17, valueType = "n")
+reportObject <- compareValues2(reportedValue = "25", obtainedValue = 25, valueType = "n")
+reportObject <- compareValues2(reportedValue = "30", obtainedValue = 30, valueType = "n")
+reportObject <- compareValues2(reportedValue = "83", obtainedValue = 83, valueType = "n")
+reportObject <- compareValues2(reportedValue = "4", obtainedValue = 4, valueType = "n")
+reportObject <- compareValues2(reportedValue = "30", obtainedValue = 30, valueType = "n")
+reportObject <- compareValues2(reportedValue = "13", obtainedValue = 13, valueType = "n")
+reportObject <- compareValues2(reportedValue = "26", obtainedValue = 26, valueType = "n")
+reportObject <- compareValues2(reportedValue = "30", obtainedValue = 30, valueType = "n")
+reportObject <- compareValues2(reportedValue = "87", obtainedValue = 87, valueType = "n")
+reportObject <- compareValues2(reportedValue = "20", obtainedValue = 20, valueType = "n")
+reportObject <- compareValues2(reportedValue = "25", obtainedValue = 25, valueType = "n")
+reportObject <- compareValues2(reportedValue = "80", obtainedValue = 80, valueType = "n")
+reportObject <- compareValues2(reportedValue = "5", obtainedValue = 5, valueType = "n")
+reportObject <- compareValues2(reportedValue = "25", obtainedValue = 25, valueType = "n")
+reportObject <- compareValues2(reportedValue = "20", obtainedValue = 20, valueType = "n")
+reportObject <- compareValues2(reportedValue = "7", obtainedValue = 7, valueType = "n")
+reportObject <- compareValues2(reportedValue = "26", obtainedValue = 26, valueType = "n")
+reportObject <- compareValues2(reportedValue = "27", obtainedValue = 27, valueType = "n")
+reportObject <- compareValues2(reportedValue = "19", obtainedValue = 19, valueType = "n")
+reportObject <- compareValues2(reportedValue = "26", obtainedValue = 26, valueType = "n")
+reportObject <- compareValues2(reportedValue = "73", obtainedValue = 73, valueType = "n")
+reportObject <- compareValues2(reportedValue = "5", obtainedValue = 5, valueType = "n")
+reportObject <- compareValues2(reportedValue = "5", obtainedValue = 5, valueType = "n")
+reportObject <- compareValues2(reportedValue = "100", obtainedValue = 100, valueType = "n")
+reportObject <- compareValues2(reportedValue = "19", obtainedValue = 19, valueType = "n")
+reportObject <- compareValues2(reportedValue = "19", obtainedValue = 19, valueType = "n")
+reportObject <- compareValues2(reportedValue = "100", obtainedValue = 100, valueType = "n")
+```
 
 ### Inferential statistics
 > Results of chi-square tests showed that the percentage of participants who found the correct solution in the original trick group (83%) was significantly greater than both the percentage in the FS conditional trick group (17%, χ2 = 26.67, p < 0.001) and the percentage in the FS extinction trick group (13%, χ2 = 29.43, p < 0.001).
@@ -105,26 +147,26 @@ table1 <- rbind(table(data$firstquestion_original), table(data$firstquestion_con
 test1 <- chisq.test(table1, correct = FALSE)
 
 # Compare values for original versus conditional
-compareValues(26.67, test1$statistic)
-test1$p.value # For comparison by inspection
+reportObject <- compareValues2("26.67", test1$statistic, valueType = 'x2')
+reportObject <- compareValues2("eyeballMATCH", test1$p.value, valueType = 'p')
 
 # Test original versus extinction
 table2 <- rbind(table(data$firstquestion_original), table(data$firstquestion_extinction))
 test2 <- chisq.test(table2, correct = FALSE)
 
 # Compare values for original versus extinction
-compareValues(29.43, test2$statistic)
-test2$p.value # For comparison by inspection
+reportObject <- compareValues2("29.43", test2$statistic, valueType = 'x2')
+reportObject <- compareValues2("eyeballMATCH", test2$p.value, valueType = 'p')
 
 # Test conditional versus extinction
 table3 <- rbind(table(data$firstquestion_conditional), table(data$firstquestion_extinction))
 test3 <- chisq.test(table3, correct = FALSE)
 
 # Compare values for conditional versus extinction
-compareValues(0.13, test3$statistic)
-compareValues(0.72, test3$p.value, isP = T)
+reportObject <- compareValues2("0.13", test3$statistic, valueType = 'x2')
+reportObject <- compareValues2("0.72", test3$p.value, valueType = 'p')
 ```
-Where p-values were reported as inequalities, I compared them by inspection, resulting in MATCH for original vs conditional and MATCH for original vs extinction.
+Where p-values were reported as inequalities, I compared them by eyeballing, resulting in MATCH for original vs conditional and MATCH for original vs extinction.
 
 NB: No continuity correction was performed for the $\chi^2$ tests. 
 
@@ -136,25 +178,66 @@ table4 <- rbind(table(data$testquestionfirst_conditional), table(data$testquesti
 test4 <- chisq.test(table4, correct = FALSE)
 
 # Compare values for conditional versus extinction
-compareValues(14.41, test4$statistic)
-test4$p.value # For comparison by inspection
+reportObject <- compareValues2("14.41", test4$statistic, valueType = 'x2')
+reportObject <- compareValues2("eyeballMATCH", test4$p.value, valueType = 'p')
 ```
 
-The p-value was reported as an inequality, and I compared by inspection, resulting in MATCH.
+The p-value was reported as an inequality, and I compared by eyeballing, resulting in MATCH.
 
 ## Step 5: Conclusion
 
+All descriptive results matched. Results from chi-squared tests matched as well. 
+
 ```{r}
-codReport(Report_Type = 'joint',
-          Article_ID = 'leydV', 
-          Insufficient_Information_Errors = 0,
-          Decision_Errors = 0, 
-          Major_Numerical_Errors = 0, 
-          Minor_Numerical_Errors = 0, 
-          Author_Assistance = FALSE)
+reportObject$Article_ID <- "leydV"
+reportObject$affectsConclusion <- NA
+reportObject$error_typo <- 0
+reportObject$error_specification <- 0
+reportObject$error_analysis <- 0
+reportObject$error_data <- 0
+reportObject$error_unidentified <- 0
+reportObject$Author_Assistance <- F
+reportObject$resolved_typo <- 0
+reportObject$resolved_specification <- 0
+reportObject$resolved_analysis <- 0
+reportObject$resolved_data <- 0
+reportObject$correctionSuggested <- NA
+reportObject$correctionPublished <- NA
+
+# decide on final outcome
+if(reportObject$Decision_Errors > 0 | reportObject$Major_Numerical_Errors > 0 | reportObject$Insufficient_Information_Errors > 0){
+  reportObject$finalOutcome <- "Failure"
+  if(reportObject$Author_Assistance == T){
+    reportObject$finalOutcome <- "Failure despite author assistance"
+  }
+}else{
+  reportObject$finalOutcome <- "Success"
+  if(reportObject$Author_Assistance == T){
+    reportObject$finalOutcome <- "Success with author assistance"
+  }
+}
+
+# save the report object
+filename <- paste0("reportObject_", reportObject$Article_ID,".csv")
+write_csv(reportObject, filename)
 ```
 
-All descriptive results matched. Results from chi-squared tests matched as well. 
+## Report Object
+
+```{r, echo = FALSE}
+# display report object in chunks
+kable(reportObject[2:10], align = 'l')
+kable(reportObject[11:20], align = 'l')
+kable(reportObject[21:25], align = 'l')
+kable(reportObject[26:30], align = 'l')
+kable(reportObject[31:35], align = 'l')
+kable(reportObject[36:40], align = 'l')
+kable(reportObject[41:45], align = 'l')
+kable(reportObject[46:51], align = 'l')
+kable(reportObject[52:57], align = 'l')
+```
+
+## Session information
 
 ```{r session_info, include=TRUE, echo=TRUE, results='markup'}
 devtools::session_info()
