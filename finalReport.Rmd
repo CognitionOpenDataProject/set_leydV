@@ -94,7 +94,7 @@ kable(table_out, format = "markdown")
 
 ```
 
-![Appendix A.](images/AppendixA.pnG)
+![Appendix A.](images/AppendixA.png)
 
 The table contains 36 numerical results. Three of them were already reported in the text and compared above. Let's explictly check the others.
 
